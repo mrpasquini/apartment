@@ -30,3 +30,6 @@ Rails/ApplicationRecord:
 
 Rails/Output:
   Enabled: false
+
+Style/Documentation:
+  Enabled: false
