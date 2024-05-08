@@ -7,6 +7,7 @@ require:
 
 AllCops:
   Exclude:
+    - vendor/bundle/**/*
     - gemfiles/**/*.gemfile
     - gemfiles/vendor/**/*
     - spec/dummy_engine/dummy_engine.gemspec
