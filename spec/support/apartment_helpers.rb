@@ -25,7 +25,7 @@ module Apartment
     end
 
     # Use this if you don't want to import schema.rb etc... but need the postgres schema to exist
-    # basically for speed purposes
+    # basically for speed purposes.
     def create_schema(schema)
       ActiveRecord::Base.connection.execute("CREATE SCHEMA #{schema}")
     end
