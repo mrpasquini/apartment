@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
       - run: git fetch
-      - run: git reset --hard master
+      - run: git reset --hard origin master
       - name: Generate changelog
         uses: charmixer/auto-changelog-action@v1
         with:
