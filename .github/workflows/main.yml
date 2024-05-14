@@ -10,7 +10,6 @@ on:
 
 jobs:
   test:
-    if: 1==0
     name: rails / rspec
     runs-on: ubuntu-latest
     strategy:

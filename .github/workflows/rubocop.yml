@@ -10,7 +10,6 @@ on:
 
 jobs:
   rubocop:
-    if: 1==0
     name: runner / rubocop
     runs-on: ubuntu-latest
     env:
