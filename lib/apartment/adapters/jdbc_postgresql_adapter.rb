@@ -17,6 +17,10 @@ module Apartment
   module Adapters
     # Default adapter when not using Postgresql Schemas
     class JDBCPostgresqlAdapter < PostgresqlAdapter
+      def default_sequence_name
+        super.delete('"') # jdbc postgres adds quotes if rescued, trim leading and trailing quotes
+      end
+
       private
 
       def multi_tenantify_with_tenant_db_name(config, tenant)
