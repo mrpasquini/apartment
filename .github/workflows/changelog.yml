@@ -32,6 +32,7 @@ jobs:
         run: |
           git config --local user.email "$ACTION_EMAIL"
           git config --local user.name "$ACTION_USERNAME"
+          git reset --hard HEAD
           git add CHANGELOG.md && git commit -m 'Updated CHANGELOG.md' && echo "push=true" >> $GITHUB_OUTPUT || echo "No changes to CHANGELOG.md"
 
       - name: Push changes to master
