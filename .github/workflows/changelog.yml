@@ -22,6 +22,7 @@ jobs:
       - name: Generate changelog
         uses: charmixer/auto-changelog-action@v1
         with:
+          release_branch: 
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit files
@@ -33,10 +34,10 @@ jobs:
           git config --local user.email "$ACTION_EMAIL"
           git config --local user.name "$ACTION_USERNAME"
           git reset --hard HEAD
-          git add CHANGELOG.md && git commit -m 'Updated CHANGELOG.md' && echo "push=true" >> $GITHUB_OUTPUT || echo "No changes to CHANGELOG.md"
+          git add CHANGELOG.md && git commit -m 'Updated CHANGELOG.md' && echo "push=true" >> $GITHUB_OUTPUT || echo "No changes to CHANGELOG.md" && echo "push=false" >> $GITHUB_OUTPUT
 
       - name: Push changes to master
-        if: ${{ steps.step1.outputs.out }} == true
+        if: ${{ steps.step1.outputs.out == 'true' }}
         env:
           # CI_USER: ${{ secrets.YOUR_GITHUB_USER }}
           CI_TOKEN: ${{ secrets.CHANGELOG_GITHUB_TOKEN }}
@@ -44,7 +45,7 @@ jobs:
           git push "https://$GITHUB_ACTOR:$CI_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:master
 
       - name: Cherry-pick changelog to development
-        if: ${{ steps.step1.outputs.out }} ==true
+        if: ${{ steps.step1.outputs.out == 'true' }}
         env:
           ACTION_EMAIL: action@github.com
           ACTION_USERNAME: GitHub Action
