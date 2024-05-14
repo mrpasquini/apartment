@@ -23,7 +23,7 @@ jobs:
         uses: charmixer/auto-changelog-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
+          future_release: Unreleased
       - name: Commit files
         id: commit_files
         env:
