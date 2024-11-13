@@ -5,7 +5,11 @@ require 'apartment/adapters/abstract_adapter'
 module Apartment
   module Tenant
     def self.sqlite3_adapter(config)
-      Adapters::Sqlite3Adapter.new(config)
+      if Apartment.use_schemas
+        Adapters::Sqlite3Adapter.new(config)
+      else
+        Adapters::Sqlite3SchemaAdapter.new(config)
+      end
     end
   end
 
@@ -61,6 +65,9 @@ module Apartment
       def database_file(tenant)
         "#{@default_dir}/#{environmentify(tenant)}.sqlite3"
       end
+    end
+
+    class Sqlite3SchemaAdapter < Sqlite3Adapter
     end
   end
 end
